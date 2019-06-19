@@ -2,6 +2,7 @@
     "extends": "tslint:recommended",
     "linterOptions": {},
     "rules": {
+        "ordered-imports": false,
         "semicolon": [true, "always", "ignore-bound-class-methods", "ignore-interfaces"],
         "no-console": false,
         "trailing-comma": [true, {

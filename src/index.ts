@@ -1,3 +1,4 @@
-import callFingate from "./callFingate";
+import CallFingate from "./callFingate";
 
-export default callFingate;
+export default CallFingate;
+export { CallFingate };

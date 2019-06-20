@@ -105,10 +105,10 @@ describe("test call fingate", function() {
 
   describe("test instance", function() {
     let inst
-    before(() => {
+    before(async () => {
       this.timeout(0);
       inst = new CallFingate(testServer);
-      inst.connect();
+      await inst.connect();
     })
 
     after(() => {
@@ -119,11 +119,11 @@ describe("test call fingate", function() {
       expect(inst.remote).to.deep.equal(inst._remote);
     })
 
-    // it("resolve number if get call balance success", async function() {
-    //   this.timeout(0);
-    //   const balance = await inst.getCallBalance(testAddress);
-    //   expect(parseFloat(balance)).to.be.a("number");
-    // })
+    it("resolve number if get call balance success", async function() {
+      this.timeout(0);
+      const balance = await inst.getCallBalance(testAddress);
+      expect(parseFloat(balance)).to.be.a("number");
+    })
 
     it("throw error if get error", async function() {
       this.timeout(0);

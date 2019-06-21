@@ -2,9 +2,9 @@ const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack
 const path = require("path");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
+const webpack = require("webpack");
 const config = {
-  entry: "./lib",
+  entry: "./lib/index.js",
   output: {
     filename: "jcc-call-utils.min.js",
     path: path.resolve(__dirname, "./dist"),
@@ -29,14 +29,24 @@ const config = {
   },
   module: {
     rules: [{
-      test: /\.tsx?$/,
-      use: "ts-loader",
-      exclude: /node_modules/
-    }]
+        test: require.resolve('./lib/index.js'),
+        use: 'imports-loader?this=>window'
+      },
+      {
+        test: require.resolve(path.resolve(__dirname, "lib/call-for-browser/index.js")),
+        use: 'exports-loader?call'
+      }
+    ]
+  },
+  externals: {
+    "call-lib": true
   },
   plugins: [
     new DuplicatePackageCheckerPlugin({
       strict: false
+    }),
+    new webpack.ProvidePlugin({
+      _: 'lodash'
     })
   ]
 };

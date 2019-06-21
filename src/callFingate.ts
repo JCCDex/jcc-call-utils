@@ -1,12 +1,18 @@
 import BigNumber from "bignumber.js";
 import * as callWallet from "jcc_wallet/lib/call";
-import { CallAPI } from "call-lib";
 import IMemo from "./model/memo";
 import IPayment from "./model/payment";
 import IPrepared from "./model/prepared";
 import ISignature from "./model/signature";
 import IWallet from "./model/wallet";
 import { isValidAmount, isValidMemo, isValidCallAddress, isValidCallSecret, validate } from "./validator";
+let call;
+if (global["Window"]) {
+  call = require("./call-for-browser");
+} else {
+  call = require("call-lib");
+}
+const CallAPI = call.CallAPI;
 
 /**
  * call fingate
@@ -71,7 +77,7 @@ export default class CallFingate {
     return callWallet.getAddress(secret);
   }
 
-  public get remote(): CallAPI {
+  public get remote() {
     return this._remote;
   }
 

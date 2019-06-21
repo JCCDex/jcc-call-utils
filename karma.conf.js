@@ -22,6 +22,9 @@ module.exports = function(config) {
     webpack: {
       node: webpackConfig.node,
       resolve: webpackConfig.resolve,
+      plugins: webpackConfig.plugins,
+      module: webpackConfig.module,
+      externals: webpackConfig.externals,
       mode: "development"
     },
     envPreprocessor: [

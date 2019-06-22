@@ -1,6 +1,6 @@
 {
   "name": "jcc-call-utils",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Toolkit of crossing chain from Call chain to SWTC chain",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

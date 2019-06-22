@@ -162,9 +162,9 @@ export default class CallFingate {
     });
   }
 
-  public submit(signedTransaction: string) {
+  public submit(signedTransaction: ISignature) {
     return new Promise((resolve, reject) => {
-      this._remote.submit(signedTransaction).then((result) => {
+      this._remote.submit(signedTransaction, true).then((result) => {
         return resolve(result);
       }).catch((error) => {
         return reject(error);
@@ -223,8 +223,8 @@ export default class CallFingate {
     const payment = this.formatPayment(from, destination, new BigNumber(amount).toString(10), JSON.stringify(memo));
     try {
       const prepared = await this.preparePayment(from, payment);
-      const signature = await this.sign(prepared.txJSON, secret);
-      const response: any = await this.submit(signature.signedTransaction);
+      const signature = await this.sign(prepared.tx_json, secret);
+      const response: any = await this.submit(signature);
       if (response.resultCode === "tesSUCCESS") {
         return signature.id;
       } else {

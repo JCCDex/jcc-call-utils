@@ -1,3 +1,3 @@
 export default interface IPrepared {
-  txJSON: string
+  tx_json: string
 }

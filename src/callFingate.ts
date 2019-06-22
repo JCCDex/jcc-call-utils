@@ -182,13 +182,13 @@ export default class CallFingate {
    * @returns {IPayment}
    * @memberof CallFingate
    */
-  public formatPayment(from: string, destination: string, amount: number, memo: string): IPayment {
+  public formatPayment(from: string, destination: string, amount: string, memo: string): IPayment {
     const payment: IPayment = {
       destination: {
         address: destination,
         amount: {
           currency: "CALL",
-          value: new BigNumber(amount).toString(10)
+          value: amount
         }
       },
       memos: [{
@@ -200,7 +200,7 @@ export default class CallFingate {
         address: from,
         maxAmount: {
           currency: "CALL",
-          value: new BigNumber(amount).toString(10)
+          value: amount
         }
       }
     };
@@ -212,15 +212,15 @@ export default class CallFingate {
    *
    * @param {string} secret call secret
    * @param {string} destination call destination address
-   * @param {number} amount transfer amount
+   * @param {string} amount transfer amount
    * @param {IMemo} memo  transfer memo
    * @returns {Promise<string>} return hash if success
    * @memberof CallFingate
    */
   @validate
-  public async transfer(@isValidCallSecret secret: string, @isValidCallAddress destination: string, @isValidAmount amount: number, @isValidMemo memo: IMemo): Promise<string> {
+  public async transfer(@isValidCallSecret secret: string, @isValidCallAddress destination: string, @isValidAmount amount: string, @isValidMemo memo: IMemo): Promise<string> {
     const from = CallFingate.getAddress(secret);
-    const payment = this.formatPayment(from, destination, amount, JSON.stringify(memo));
+    const payment = this.formatPayment(from, destination, new BigNumber(amount).toString(10), JSON.stringify(memo));
     try {
       const prepared = await this.preparePayment(from, payment);
       const signature = await this.sign(prepared.txJSON, secret);

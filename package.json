@@ -6,7 +6,9 @@
   "scripts": {
     "build": "tsc -p tsconfig.json && npm run copy",
     "test": "gulp",
+    "deploy": "./publish.sh",
     "copy": "cp -r src/call-for-browser lib",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "test:node": "npm run build && nyc --extension=.ts --reporter=lcov --reporter=html --reporter=text mocha",
     "test:browser": "npm run build && karma start karma.conf.js",
     "tslint": "tslint --project tsconfig.json --config tslint.json",

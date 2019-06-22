@@ -1,9 +1,12 @@
 {
   "name": "jcc-call-utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Toolkit of crossing chain from Call chain to SWTC chain",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "unpkg": "dist/jcc-call-utils.min.js",
   "scripts": {
+    "compile": "./compile.sh",
     "build": "tsc -p tsconfig.json && npm run copy",
     "test": "gulp",
     "deploy": "./publish.sh",
@@ -66,5 +69,9 @@
   "bugs": {
     "url": "https://github.com/JCCDex/jcc-call-utils/issues"
   },
+  "files": [
+    "lib",
+    "dist"
+  ],
   "homepage": "https://github.com/JCCDex/jcc-call-utils#readme"
 }

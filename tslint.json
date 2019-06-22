@@ -37,8 +37,6 @@
       "named": "never",
       "asyncArrow": "always",
       "constructor": "never"
-    }],
-    "no-var-requires": false,
-    "no-string-literal": false
+    }]
   }
 }

@@ -7,10 +7,11 @@ import ISignature from "./model/signature";
 import IWallet from "./model/wallet";
 import { isValidAmount, isValidMemo, isValidCallAddress, isValidCallSecret, validate } from "./validator";
 let call;
-if (global["Window"]) {
-  call = require("./call-for-browser");
+/* istanbul ignore if */
+if (global["Window"]) { // tslint:disable-line
+  call = require("./call-for-browser"); // tslint:disable-line 
 } else {
-  call = require("call-lib");
+  call = require("call-lib"); // tslint:disable-line 
 }
 const CallAPI = call.CallAPI;
 

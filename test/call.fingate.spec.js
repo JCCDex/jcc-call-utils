@@ -130,7 +130,7 @@ describe("test call fingate", function() {
     it("throw error if get error", async function() {
       this.timeout(0);
       try {
-        await inst.getCallBalance(testDestination)
+        await inst.getCallBalance("")
       } catch (error) {
         expect(error).to.be.an('error');
       }
@@ -173,21 +173,45 @@ describe("test call fingate", function() {
       }
     })
 
+    it("transfer failed", async function() {
+      this.timeout(0);
+      const stub = sandbox.stub(inst._remote, "preparePayment");
+      stub.resolves(testTxJSON);
+      const stub1 = sandbox.stub(inst._remote, "submit");
+      stub1.resolves({
+        resultCode: "tesFailed",
+        resultMessage: "net work error"
+      });
+      try {
+        await inst.transfer(testSecret, testDestination, 1, testMemo);
+      } catch (error) {
+        expect(error.message).to.equal("net work error");
+      } finally {
+        sandbox.restore();
+      }
+    })
+
     it("throw error if sign failed", function() {
       expect(() => inst.sign("", testSecret)).to.throw();
     })
 
     it("reject error if submit failed", function(done) {
+      const stub = sandbox.stub(inst._remote, "submit");
+      stub.rejects();
       inst.submit("").catch(error => {
         expect(error).to.be.an("error");
+        sandbox.restore();
         done();
       })
     })
 
     it("reject error if preparePayment failed", function(done) {
-      inst.preparePayment(testAddress, "").catch(error => {
+      const stub = sandbox.stub(inst._remote, "preparePayment");
+      stub.rejects();
+      inst.preparePayment("", null).catch(error => {
         expect(error).to.be.an("error");
         done();
+        sandbox.restore();
       })
     })
 

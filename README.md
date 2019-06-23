@@ -22,6 +22,14 @@ e.g. you transfer 1 `CALL` to [Call Fingate](http://block.callchain.live/#/accou
 npm install jcc-call-utils
 ```
 
+## CDN
+
+`jcc_call_utils` as a global variable.
+
+```javascript
+<script src="https://unpkg.com/jcc-call-utils/dist/jcc-call-utils.min.js"></script>
+```
+
 ## Usage
 
 ```javascript

@@ -29,11 +29,11 @@ const config = {
   },
   module: {
     rules: [{
-        test: require.resolve('./lib/index.js'),
+        test: require.resolve(path.resolve(__dirname, "lib/index.js")),
         use: 'imports-loader?this=>window'
       },
       {
-        test: require.resolve(path.resolve(__dirname, "lib/call-for-browser/index.js")),
+        test: require.resolve(path.resolve(__dirname, "node_modules/call-for-browser")),
         use: 'exports-loader?call'
       }
     ]

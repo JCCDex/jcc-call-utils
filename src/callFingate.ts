@@ -9,7 +9,8 @@ import { isValidAmount, isValidMemo, isValidCallAddress, isValidCallSecret, vali
 let call;
 /* istanbul ignore if */
 if (global["Window"]) { // tslint:disable-line
-  call = require("./call-for-browser"); // tslint:disable-line 
+  // for web browser
+  call = require("call-for-browser"); // tslint:disable-line 
 } else {
   call = require("call-lib"); // tslint:disable-line 
 }

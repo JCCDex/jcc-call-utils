@@ -7,10 +7,9 @@
   "unpkg": "dist/jcc-call-utils.min.js",
   "scripts": {
     "compile": "./compile.sh",
-    "build": "tsc -p tsconfig.json && npm run copy",
+    "build": "tsc -p tsconfig.json",
     "test": "gulp",
     "deploy": "./publish.sh",
-    "copy": "cp -r src/call-for-browser lib",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "test:node": "npm run build && nyc --extension=.ts --reporter=lcov --reporter=html --reporter=text mocha",
     "test:browser": "npm run build && karma start karma.conf.js",
@@ -24,6 +23,7 @@
   "dependencies": {
     "@types/node": "^11.12.2",
     "bignumber.js": "^9.0.0",
+    "call-for-browser": "^0.1.7",
     "call-lib": "^0.2.8",
     "jcc_wallet": "^0.4.0"
   },

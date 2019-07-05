@@ -24,8 +24,19 @@ const CallAPI = call.CallAPI;
  */
 export default class CallFingate {
 
+  /**
+   * instance of CallAPI
+   *
+   * @private
+   * @memberof CallFingate
+   */
   private _remote = null;
 
+  /**
+   * Creates an instance of CallFingate.
+   * @param {string} node
+   * @memberof CallFingate
+   */
   constructor(node: string) {
     this._remote = new CallAPI({
       server: node
@@ -115,6 +126,7 @@ export default class CallFingate {
    * @memberof CallFingate
    */
   public disconnect() {
+    /* istanbul ignore else */
     if (this._remote) {
       this._remote.disconnect();
     }
@@ -138,7 +150,7 @@ export default class CallFingate {
   }
 
   /**
-   * sign payment data
+   * sign transaction
    *
    * @param {string} txJSON
    * @param {string} secret
@@ -153,6 +165,14 @@ export default class CallFingate {
     }
   }
 
+  /**
+   * prepare payment
+   *
+   * @param {string} address
+   * @param {IPayment} payment
+   * @returns {Promise<IPrepared>}
+   * @memberof CallFingate
+   */
   public preparePayment(address: string, payment: IPayment): Promise<IPrepared> {
     return new Promise((resolve, reject) => {
       this._remote.preparePayment(address, payment).then((prepared) => {
@@ -163,7 +183,14 @@ export default class CallFingate {
     });
   }
 
-  public submit(signedTransaction: ISignature) {
+  /**
+   * submit transaction
+   *
+   * @param {ISignature} signedTransaction
+   * @returns
+   * @memberof CallFingate
+   */
+  public submit(signedTransaction: ISignature): Promise<any> {
     return new Promise((resolve, reject) => {
       this._remote.submit(signedTransaction, true).then((result) => {
         return resolve(result);

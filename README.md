@@ -65,3 +65,7 @@ try {
     instance.disconnect();
 }
 ```
+
+## API
+
+see [API.md](https://github.com/JCCDex/jcc-call-utils/blob/master/docs/API.md)

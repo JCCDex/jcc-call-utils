@@ -6,7 +6,6 @@ Toolkit of crossing chain from [Call](http://www.callchain.live/) to [SWTC chain
 [![Build Status](https://travis-ci.com/JCCDex/jcc-call-utils.svg?branch=master)](https://travis-ci.com/JCCDex/jcc-call-utils)
 [![Coverage Status](https://coveralls.io/repos/github/JCCDex/jcc-call-utils/badge.svg?branch=master)](https://coveralls.io/github/JCCDex/jcc-call-utils?branch=master)
 [![Dependencies](https://img.shields.io/david/JCCDex/jcc-call-utils.svg?style=flat-square)](https://david-dm.org/JCCDex/jcc-call-utils)
-[![DevDependencies](https://img.shields.io/david/dev/JCCDex/jcc-call-utils.svg?style=flat-square)](https://david-dm.org/JCCDex/jcc-call-utils?type=dev)
 [![npm downloads](https://img.shields.io/npm/dm/jcc-call-utils.svg)](http://npm-stat.com/charts.html?package=jcc-call-utils)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
